@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Resume Maker</title>
+  
+      <script>
+    function SendData() {
+        var name = document.getElementById('FName').value;
+        var Lname = document.getElementById('LName').value;
+        var city = document.getElementById('CITY').value;
+        var country = document.getElementById('cntry').value;
+        var mobile = document.getElementById('telNo').value;
+        var email = document.getElementById('email').value;
+        var jobTitle = document.getElementById('jobtittle').value;
+        var companyName = document.getElementById('cmpName').value;
+        var jobCity = document.getElementById('jobcity').value;
+        var jobCountry = document.getElementById('jbcntry').value;
+        var jobStartDate = document.getElementById('stdate').value;
+        var jobEndDate = document.getElementById('EndDate').value;
+
+        // Education - Schooling
+        var schoolName1 = document.getElementById('school').value;
+        var percentage1 = document.getElementById('schlpercen').value;
+        var schoolCity1 = document.getElementById('schlcity').value;
+        var schoolStartDate1 = document.getElementById('sclstrtDate').value;
+        var schoolEndDate1 = document.getElementsByClassName('sclenddate').value;
+
+        // Education - 12th Standard
+        var schoolName2 = document.getElementById('12thschool').value;
+        var percentage2 = document.getElementById('12schoolpercent').value;
+        var schoolCity2 = document.getElementById('12schoolcity').value;
+        var schoolStartDate2 = document.getElementById('12schoolstartdate').value;
+        var schoolEndDate2 = document.getElementById('12schoolend').value;
+
+        // Education - Graduation
+        var schoolName3 = document.getElementById('graduate').value;
+        var percentage3 = document.getElementById('graduatepercent').value;
+        var schoolCity3 = document.getElementById('graduatecity').value;
+        var schoolStartDate3 = document.getElementById('gratuatestart').value;
+        var schoolEndDate3 = document.getElementById('graduateEnd').value;
+
+        // Skills (retrieving selected skills)
+        var skills = [];
+        document.querySelectorAll("input[name='Skills']:checked").forEach(skill => {
+            skills.push(skill.nextElementSibling.textContent);
+        });
+
+        // Languages (retrieving selected languages)
+        var languages = [];
+        document.querySelectorAll("input[name='Skills']:checked").forEach(language => {
+            languages.push(language.nextElementSibling.textContent);
+        });
+
+        // Saving all the data in localStorage
+        localStorage.setItem('name', name);
+        localStorage.setItem('Lname', Lname);
+        localStorage.setItem('city', city);
+        localStorage.setItem('country', country);
+        localStorage.setItem('mobile', mobile);
+        localStorage.setItem('email', email);
+        localStorage.setItem('jobTitle', jobTitle);
+        localStorage.setItem('companyName', companyName);
+        localStorage.setItem('jobCity', jobCity);
+        localStorage.setItem('jobCountry', jobCountry);
+        localStorage.setItem('jobStartDate', jobStartDate);
+        localStorage.setItem('jobEndDate', jobEndDate);
+
+        // Storing education details
+        localStorage.setItem('schoolName1', schoolName1);
+        localStorage.setItem('percentage1', percentage1);
+        localStorage.setItem('schoolCity1', schoolCity1);
+        localStorage.setItem('schoolStartDate1', schoolStartDate1);
+        localStorage.setItem('schoolEndDate1', schoolEndDate1);
+
+        localStorage.setItem('schoolName2', schoolName2);
+        localStorage.setItem('percentage2', percentage2);
+        localStorage.setItem('schoolCity2', schoolCity2);
+        localStorage.setItem('schoolStartDate2', schoolStartDate2);
+        localStorage.setItem('schoolEndDate2', schoolEndDate2);
+
+        localStorage.setItem('schoolName3', schoolName3);
+        localStorage.setItem('percentage3', percentage3);
+        localStorage.setItem('schoolCity3', schoolCity3);
+        localStorage.setItem('schoolStartDate3', schoolStartDate3);
+        localStorage.setItem('schoolEndDate3', schoolEndDate3);
+
+        // Storing skills and languages
+        localStorage.setItem('skills', JSON.stringify(skills));
+        localStorage.setItem('languages', JSON.stringify(languages));
+
+        window.location.href = "ResumePrint.html";
+    }
+</script>
+
+    </script>
+    <style>
+        body {
+            background-color: gray;
+        }
+        .Container1 {
+            background-color: whitesmoke;
+            padding: 20px;
+            margin: 20px auto;
+            border: 10px solid black;
+            border-radius: 10px;
+            width: 800px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .content {
+            text-align: center;
+            color: red;
+        }
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .form-control {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .form-control:last-child {
+            margin-right: 0; /* Remove margin from the last item in the row */
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+        hr {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Create Your Own Resume</h1>
+    <div class="Container1"> 
+        <form action="" method="post">
+            <h3 class="content">Basic Info</h3>
+            <div class="form-row">
+                <div class="form-control">
+                    <label>First Name:</label>
+                    <input type="text" id="FName" name="firstName">
+                </div>
+                <div class="form-control">
+                    <label>Last Name:</label>
+                    <input type="text" name="lastName" id="LName">
+                </div>
+                <div class="form-control">
+                    <label>City:</label>
+                    <input type="text" id="CITY" name="city">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-control">
+                    <label>Country:</label>
+                    <input type="text" id="cntry" name="country">
+                </div>
+                <div class="form-control">
+                    <label>Mobile No:</label>
+                    <input type="tel" id="telNo" name="mobile">
+                </div>
+                <div class="form-control">
+                    <label>E-Mail:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+            </div>
+            <hr>
+            <p>Tell me About Your Recent Job Experience</p>
+            <div class="form-row">
+                <div class="form-control">
+                    <label>Job Title:</label>
+                    <input type="text" id="jobtittle" name="jobTitle">
+                </div>
+                <div class="form-control">
+                    <label>Company Name:</label>
+                    <input type="text" id="cmpName" name="companyName">
+                </div>
+                <div class="form-control">
+                    <label>City:</label>
+                    <input type="text" name="jobCity" id="jobcity">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-control">
+                    <label>Country:</label>
+                    <input type="text" name="jobCountry" id="jbcntry">
+                </div>
+                <div class="form-control">
+                    <label>Start Date:</label>
+                    <input type="date" name="jobStartDate" id="stdate">
+                </div>
+                <div class="form-control">
+                    <label>End Date:</label>
+                    <input type="date" name="jobEndDate" id="EndDate">
+                </div>
+            </div>
+            <hr>
+            <p class="content">Education</p>
+            <p class="content">Schooling</p>
+            <div class="form-row">
+                <div class="form-control">
+                    <label>School Name:</label>
+                    <input type="text" name="schoolName1" id="school">
+                </div>
+                <div class="form-control">
+                    <label>Percentage:</label>
+                    <input type="text" name="percentage1" id="schlpercen">
+                </div>
+                <div class="form-control">
+                    <label>City:</label>
+                    <input type="text" name="schoolCity1" id="schlcity">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-control">
+                    <label>Start Date:</label>
+                    <input type="date" name="schoolStartDate1" id="sclstrtDate">
+                </div>
+                <div class="form-control">
+                    <label>End Date:</label>
+                    <input type="date" name="schoolEndDate1" id="sclenddate">
+                </div>
+            </div>
+            <hr>
+            <p class="content">12th Standard</p>
+            <div class="form-row">
+                <div class="form-control">
+                    <label>School Name:</label>
+                    <input type="text" name="schoolName2" id="12thschool">
+                </div>
+                <div class="form-control">
+                    <label>Percentage:</label>
+                    <input type="text" name="percentage2" id="12schoolpercent">
+                </div>
+                <div class="form-control">
+                    <label>City:</label>
+                    <input type="text" name="schoolCity2" id="12schoolcity">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-control">
+                    <label>Start Date:</label>
+                    <input type="date" name="schoolStartDate2" id="12schoolstartdate">
+                </div>
+                <div class="form-control">
+                    <label>End Date:</label>
+                    <input type="date" name="schoolEndDate2" id="12schoolend">
+                </div>
+            </div>
+            <hr>
+            <p class="content">Graduation</p>
+            <div class="form-row">
+                <div class="form-control">
+                    <label>School Name:</label>
+                    <input type="text" name="schoolName3" id="graduate">
+                </div>
+                <div class="form-control">
+                    <label>Percentage:</label>
+                    <input type="text" name="percentage3" id="graduatepercent">
+                </div>
+                <div class="form-control">
+                    <label>City:</label>
+                    <input type="text" name="schoolCity3" id="graduatecity">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-control">
+                    <label>Start Date:</label>
+                    <input type="date" name="schoolStartDate3" id="gratuatestart">
+                </div>
+                <div class="form-control">
+                    <label>End Date:</label>
+                    <input type="date" name="schoolEndDate3" id="graduateEnd">
+                </div>
+            </div>
+            <hr>
+            <div class="form-control">
+                <h4>Skills</h4>
+                <input type="checkbox" name="Skills"><label>CSS</label>
+                <input type="checkbox" name="Skills"><label>C</label>
+                <input type="checkbox" name="Skills"><label>C#</label>
+                <input type="checkbox" name="Skills"><label>Java</label>
+                <input type="checkbox" name="Skills"><label>Python</label>
+                <input type="checkbox" name="Skills"><label>SQL</label>
+                <input type="checkbox" name="Skills"><label>JavaScript</label>
+                <input type="checkbox" name="Skills"><label>Bootstrap</label>
+                <input type="checkbox" name="Skills"><label>ASP.NET</label>
+                <input type="checkbox" name="Skills"><label>HTML</label>
+            </div>
+            <hr>
+            <div class="form-control">
+                <h4>Languages</h4>
+                <input type="checkbox" name="Skills"><label>Telugu</label>
+                <input type="checkbox" name="Skills"><label>English</label>
+                <input type="checkbox" name="Skills"><label>Hindi</label>
+            </div>
+            <hr>
+            <input type="button" value="Submit" onclick="SendData()">
+        </form>
+    </div>
+</body>
+</html>

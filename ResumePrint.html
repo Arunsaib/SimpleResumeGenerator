@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Resume</title>
+    <style>
+        body {
+            background-color: lightgray;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+            width: 800px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: darkblue;
+        }
+        h2, h3 {
+            color: darkred;
+        }
+        .info {
+            margin-bottom: 20px;
+        }
+        .info label {
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        // Function to calculate the difference between two dates in months and years
+        function calculateJobDuration(startDate, endDate) {
+            if (startDate === "Not specified" || endDate === "Not specified") {
+                return "Duration not available";
+            }
+
+            var start = new Date(startDate);
+            var end = new Date(endDate);
+            var diffInMonths = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+
+            var years = Math.floor(diffInMonths / 12);
+            var months = diffInMonths % 12;
+
+            var duration = "";
+            if (years > 0) {
+                duration += years + " year(s) ";
+            }
+            if (months > 0) {
+                duration += months + " month(s)";
+            }
+
+            return duration || "Less than a month";
+        }
+
+        window.onload = function() {
+            // Retrieve data from localStorage
+            var name = localStorage.getItem('name');
+            var lname = localStorage.getItem('Lname');
+            var city = localStorage.getItem('city') || "Not specified";
+            var country = localStorage.getItem('country') || "Not specified";
+            var mobile = localStorage.getItem('mobile') || "Not specified";
+            var email = localStorage.getItem('email') || "Not specified";
+            var jobTitle = localStorage.getItem('jobTitle') || "Not specified";
+            var companyName = localStorage.getItem('companyName') || "Not specified";
+            var jobCity = localStorage.getItem('jobCity') || "Not specified";
+            var jobCountry = localStorage.getItem('jobCountry') || "Not specified";
+            var jobStartDate = localStorage.getItem('jobStartDate') || "Not specified";
+            var jobEndDate = localStorage.getItem('jobEndDate') || "Not specified";
+
+            // Calculate job duration
+            var jobDuration = calculateJobDuration(jobStartDate, jobEndDate);
+
+            // Education Details
+            var schoolName1 = localStorage.getItem('schoolName1') || "Not specified";
+            var percentage1 = localStorage.getItem('percentage1') || "Not specified";
+            var schoolCity1 = localStorage.getItem('schoolCity1') || "Not specified";
+            var schoolStartDate1 = localStorage.getItem('schoolStartDate1') || "Not specified";
+            var schoolEndDate1 = localStorage.getItem('schoolEndDate1') || "Not specified";
+
+            var schoolName2 = localStorage.getItem('schoolName2') || "Not specified";
+            var percentage2 = localStorage.getItem('percentage2') || "Not specified";
+            var schoolCity2 = localStorage.getItem('schoolCity2') || "Not specified";
+            var schoolStartDate2 = localStorage.getItem('schoolStartDate2') || "Not specified";
+            var schoolEndDate2 = localStorage.getItem('schoolEndDate2') || "Not specified";
+
+            var schoolName3 = localStorage.getItem('schoolName3') || "Not specified";
+            var percentage3 = localStorage.getItem('percentage3') || "Not specified";
+            var schoolCity3 = localStorage.getItem('schoolCity3') || "Not specified";
+            var schoolStartDate3 = localStorage.getItem('schoolStartDate3') || "Not specified";
+            var schoolEndDate3 = localStorage.getItem('schoolEndDate3') || "Not specified";
+
+            // Skills and Languages
+            var skills = JSON.parse(localStorage.getItem('skills')) || ["Not specified"];
+            var languages = JSON.parse(localStorage.getItem('languages')) || ["Not specified"];
+
+            // Displaying the data on the page
+            document.getElementById('fullName').textContent = name + " " + lname;
+            document.getElementById('basicInfo').innerHTML = `
+                <label>City:</label> ${city} <br>
+                <label>Country:</label> ${country} <br>
+                <label>Mobile:</label> ${mobile} <br>
+                <label>Email:</label> ${email} <br>
+            `;
+
+            document.getElementById('jobExperience').innerHTML = `
+                <label>Job Title:</label> ${jobTitle} <br>
+                <label>Company Name:</label> ${companyName} <br>
+                <label>Job City:</label> ${jobCity} <br>
+                <label>Job Country:</label> ${jobCountry} <br>
+                <label>Start Date:</label> ${jobStartDate} <br>
+                <label>End Date:</label> ${jobEndDate} <br>
+                <label>Duration:</label> ${jobDuration} <br>
+            `;
+
+            document.getElementById('education').innerHTML = `
+                <h3>Schooling</h3>
+                <label>School Name:</label> ${schoolName1} <br>
+                <label>Percentage:</label> ${percentage1} <br>
+                <label>City:</label> ${schoolCity1} <br>
+                <label>Start Date:</label> ${schoolStartDate1} <br>
+                <label>End Date:</label> ${schoolEndDate1} <br>
+                <h3>12th Standard</h3>
+                <label>School Name:</label> ${schoolName2} <br>
+                <label>Percentage:</label> ${percentage2} <br>
+                <label>City:</label> ${schoolCity2} <br>
+                <label>Start Date:</label> ${schoolStartDate2} <br>
+                <label>End Date:</label> ${schoolEndDate2} <br>
+                <h3>Graduation</h3>
+                <label>School Name:</label> ${schoolName3} <br>
+                <label>Percentage:</label> ${percentage3} <br>
+                <label>City:</label> ${schoolCity3} <br>
+                <label>Start Date:</label> ${schoolStartDate3} <br>
+                <label>End Date:</label> ${schoolEndDate3} <br>
+            `;
+
+            document.getElementById('skillsLanguages').innerHTML = `
+                <h3>Skills</h3>
+                <p>${skills.join(', ')}</p>
+                <h3>Languages</h3>
+                <p>${languages.join(', ')}</p>
+            `;
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Resume</h1>
+        <div class="info">
+            <h2>Personal Information</h2>
+            <p id="fullName"></p>
+            <div id="basicInfo"></div>
+        </div>
+        <div class="info">
+            <h2>Job Experience</h2>
+            <div id="jobExperience"></div>
+        </div>
+        <div class="info">
+            <h2>Education</h2>
+            <div id="education"></div>
+        </div>
+        <div class="info">
+            <h2>Skills & Languages</h2>
+            <div id="skillsLanguages"></div>
+        </div>
+        <hr>
+        <button onclick="window.history.back()">Go Back</button>
+    </div>
+</body>
+</html>
